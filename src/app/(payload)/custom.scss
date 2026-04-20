@@ -1,4 +1,11 @@
 @layer payload-default {
+  /* Grid layout block: hide Array “Collapse all / Show all” only when those two + clipboard exist. */
+  .grid-layout-regions
+    .array-field__header-actions:has(> :nth-child(3))
+    > li:nth-child(-n + 2) {
+    display: none;
+  }
+
   /*
     Source of the border: Payload’s Group field styles
     node_modules/@payloadcms/ui/dist/fields/Group/index.scss → .group-field { border-bottom: ... }

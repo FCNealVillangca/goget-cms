@@ -10,6 +10,7 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { AccordionBlock } from '@/blocks/Accordion/Component'
 import { GalleryBlock } from '@/blocks/Gallery/Component'
 import { StepperBlock } from '@/blocks/Stepper/Component'
+import { GridLayoutBlock } from '@/blocks/GridLayout/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -20,6 +21,7 @@ const blockComponents = {
   accordion: AccordionBlock,
   gallery: GalleryBlock,
   stepper: StepperBlock,
+  gridLayout: GridLayoutBlock,
 }
 
 export const RenderBlocks: React.FC<{
