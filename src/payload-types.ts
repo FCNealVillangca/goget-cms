@@ -603,6 +603,36 @@ export interface FormBlock {
     };
     [k: string]: unknown;
   } | null;
+  background?: {
+    type?: ('none' | 'preset' | 'custom' | 'image') | null;
+    /**
+     * Theme-aware — adapts automatically to light and dark mode.
+     */
+    presetColor?:
+      | (
+          | 'bg-background text-foreground'
+          | 'bg-card text-card-foreground'
+          | 'bg-popover text-popover-foreground'
+          | 'bg-primary text-primary-foreground'
+          | 'bg-secondary text-secondary-foreground'
+          | 'bg-muted text-muted-foreground'
+          | 'bg-accent text-accent-foreground'
+          | 'bg-destructive text-destructive-foreground'
+        )
+      | null;
+    /**
+     * Any valid CSS color value: hex, rgb(), oklch(), hsl(), etc.
+     */
+    customLight?: string | null;
+    /**
+     * Optional. If left empty, the light color is used in both modes.
+     */
+    customDark?: string | null;
+    /**
+     * Displayed as a full-bleed background behind the block content.
+     */
+    image?: (number | null) | Media;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'formBlock';
@@ -1305,6 +1335,15 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        presetColor?: T;
+        customLight?: T;
+        customDark?: T;
+        image?: T;
+      };
   id?: T;
   blockName?: T;
 }

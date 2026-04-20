@@ -6,10 +6,12 @@ import React, { useCallback, useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import RichText from '@/components/RichText'
 import { Button } from '@/components/ui/button'
+import { Media } from '@/components/Media'
 import type { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
 
 import { fields } from './fields'
 import { getClientSideURL } from '@/utilities/getURL'
+import { getBackgroundClass, getCustomBackgroundCSS } from '@/utilities/getBackground'
 
 export type FormBlockType = {
   blockName?: string
@@ -17,6 +19,7 @@ export type FormBlockType = {
   enableIntro: boolean
   form: FormType
   introContent?: DefaultTypedEditorState
+  background?: any
 }
 
 export const FormBlock: React.FC<
@@ -29,6 +32,8 @@ export const FormBlock: React.FC<
     form: formFromProps,
     form: { id: formID, confirmationMessage, confirmationType, redirect, submitButtonLabel } = {},
     introContent,
+    background,
+    id,
   } = props
 
   const formMethods = useForm({
@@ -113,51 +118,69 @@ export const FormBlock: React.FC<
     [router, formID, redirect, confirmationType],
   )
 
-  return (
-    <div className="container lg:max-w-[48rem]">
-      {enableIntro && introContent && !hasSubmitted && (
-        <RichText className="mb-8 lg:mb-12" data={introContent} enableGutter={false} />
-      )}
-      <div className="p-4 lg:p-6 border border-border rounded-[0.8rem]">
-        <FormProvider {...formMethods}>
-          {!isLoading && hasSubmitted && confirmationType === 'message' && (
-            <RichText data={confirmationMessage} />
-          )}
-          {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
-          {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
-          {!hasSubmitted && (
-            <form id={formID} onSubmit={handleSubmit(onSubmit)}>
-              <div className="mb-4 last:mb-0">
-                {formFromProps &&
-                  formFromProps.fields &&
-                  formFromProps.fields?.map((field, index) => {
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    const Field: React.FC<any> = fields?.[field.blockType as keyof typeof fields]
-                    if (Field) {
-                      return (
-                        <div className="mb-6 last:mb-0" key={index}>
-                          <Field
-                            form={formFromProps}
-                            {...field}
-                            {...formMethods}
-                            control={control}
-                            errors={errors}
-                            register={register}
-                          />
-                        </div>
-                      )
-                    }
-                    return null
-                  })}
-              </div>
+  const isImage = background?.type === 'image' && background.image
+  const presetClass = getBackgroundClass(background)
+  const customCSS = getCustomBackgroundCSS(background, id)
+  const sectionId = background?.type === 'custom' && id ? `block-bg-${id}` : undefined
 
-              <Button form={formID} type="submit" variant="default">
-                {submitButtonLabel}
-              </Button>
-            </form>
+  return (
+    <>
+      {customCSS && <style dangerouslySetInnerHTML={{ __html: customCSS }} />}
+      <section id={sectionId} className={`relative w-full ${presetClass || 'bg-transparent'}`}>
+        {isImage && typeof background.image === 'object' && (
+          <Media
+            resource={background.image}
+            fill
+            imgClassName="absolute inset-0 object-cover w-full h-full -z-10"
+          />
+        )}
+        <div className="container lg:max-w-[48rem] relative z-10 py-16">
+          {enableIntro && introContent && !hasSubmitted && (
+            <RichText className="mb-8 lg:mb-12" data={introContent} enableGutter={false} />
           )}
-        </FormProvider>
-      </div>
-    </div>
+          <div className="p-4 lg:p-6 border border-border rounded-[0.8rem]">
+            <FormProvider {...formMethods}>
+              {!isLoading && hasSubmitted && confirmationType === 'message' && (
+                <RichText data={confirmationMessage} />
+              )}
+              {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
+              {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
+              {!hasSubmitted && (
+                <form id={formID} onSubmit={handleSubmit(onSubmit)}>
+                  <div className="mb-4 last:mb-0">
+                    {formFromProps &&
+                      formFromProps.fields &&
+                      formFromProps.fields?.map((field, index) => {
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        const Field: React.FC<any> =
+                          fields?.[field.blockType as keyof typeof fields]
+                        if (Field) {
+                          return (
+                            <div className="mb-6 last:mb-0" key={index}>
+                              <Field
+                                form={formFromProps}
+                                {...field}
+                                {...formMethods}
+                                control={control}
+                                errors={errors}
+                                register={register}
+                              />
+                            </div>
+                          )
+                        }
+                        return null
+                      })}
+                  </div>
+
+                  <Button form={formID} type="submit" variant="default">
+                    {submitButtonLabel}
+                  </Button>
+                </form>
+              )}
+            </FormProvider>
+          </div>
+        </div>
+      </section>
+    </>
   )
 }
