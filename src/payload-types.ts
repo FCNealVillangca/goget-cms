@@ -1003,6 +1003,7 @@ export interface GridLayoutBlock {
   regions?:
     | {
         regionId: number;
+        contentType: 'richText' | 'media';
         richText?: {
           root: {
             type: string;
@@ -1563,6 +1564,7 @@ export interface GridLayoutBlockSelect<T extends boolean = true> {
     | T
     | {
         regionId?: T;
+        contentType?: T;
         richText?: T;
         media?: T;
         id?: T;

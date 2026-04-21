@@ -114,9 +114,29 @@ export const GridLayout: Block = {
           min: 1,
         },
         {
+          name: 'contentType',
+          type: 'radio',
+          label: 'Content Type',
+          required: true,
+          defaultValue: 'richText',
+          options: [
+            {
+              label: 'Rich Text',
+              value: 'richText',
+            },
+            {
+              label: 'Media',
+              value: 'media',
+            },
+          ],
+          admin: {
+            layout: 'horizontal',
+          },
+        },
+        {
           name: 'richText',
           type: 'richText',
-          label: 'Rich text',
+          label: 'Rich Text',
           editor: lexicalEditor({
             features: ({ rootFeatures }) => {
               return [
@@ -127,12 +147,18 @@ export const GridLayout: Block = {
               ]
             },
           }),
+          admin: {
+            condition: (_, siblingData) => siblingData?.contentType === 'richText',
+          },
         },
         {
           name: 'media',
           type: 'upload',
           relationTo: 'media',
           label: 'Media',
+          admin: {
+            condition: (_, siblingData) => siblingData?.contentType === 'media',
+          },
         },
       ],
     },
