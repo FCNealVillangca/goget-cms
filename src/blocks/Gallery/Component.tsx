@@ -35,7 +35,7 @@ export const GalleryBlock: React.FC<GalleryBlockProps> = ({
           />
         )}
         <div className="container relative z-10 py-16">
-          {title && <h2 className="text-3xl font-bold mb-8 text-foreground">{title}</h2>}
+          {title && <h2 className="text-3xl font-bold mb-8">{title}</h2>}
           <div className={`grid grid-cols-1 ${colClass} gap-6 items-start`}>
             {(items || []).map((item, index) => (
               <Card key={index} className="flex flex-col overflow-hidden">
