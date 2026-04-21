@@ -11,6 +11,9 @@ import { AccordionBlock } from '@/blocks/Accordion/Component'
 import { GalleryBlock } from '@/blocks/Gallery/Component'
 import { StepperBlock } from '@/blocks/Stepper/Component'
 import { GridLayoutBlock } from '@/blocks/GridLayout/Component'
+import { HomeBlock01Block } from '@/blocks/HomeBlock01/Component'
+import { HomeBlock02Block } from '@/blocks/HomeBlock02/Component'
+import { HomeBlock03Block } from '@/blocks/HomeBlock03/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -22,6 +25,9 @@ const blockComponents = {
   gallery: GalleryBlock,
   stepper: StepperBlock,
   gridLayout: GridLayoutBlock,
+  homeBlock01: HomeBlock01Block,
+  homeBlock02: HomeBlock02Block,
+  homeBlock03: HomeBlock03Block,
 }
 
 export const RenderBlocks: React.FC<{

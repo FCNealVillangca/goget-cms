@@ -11,6 +11,9 @@ import { Accordion } from '../../blocks/Accordion/config'
 import { Gallery } from '../../blocks/Gallery/config'
 import { Stepper } from '../../blocks/Stepper/config'
 import { GridLayout } from '../../blocks/GridLayout/config'
+import { HomeBlock01 } from '../../blocks/HomeBlock01/config'
+import { HomeBlock02 } from '../../blocks/HomeBlock02/config'
+import { HomeBlock03 } from '../../blocks/HomeBlock03/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -86,6 +89,9 @@ export const Pages: CollectionConfig<'pages'> = {
                 Gallery,
                 Stepper,
                 GridLayout,
+                HomeBlock01,
+                HomeBlock02,
+                HomeBlock03,
               ],
               required: true,
               admin: {
