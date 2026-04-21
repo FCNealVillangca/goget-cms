@@ -5,7 +5,13 @@ import { Media } from '@/components/Media'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { getBackgroundClass, getCustomBackgroundCSS } from '@/utilities/getBackground'
 
-export const GalleryBlock: React.FC<GalleryBlockProps> = ({ id, items, columns, background }) => {
+export const GalleryBlock: React.FC<GalleryBlockProps> = ({
+  id,
+  title,
+  items,
+  columns,
+  background,
+}) => {
   const colClass = {
     '2': 'md:grid-cols-2',
     '3': 'md:grid-cols-2 lg:grid-cols-3',
@@ -29,6 +35,7 @@ export const GalleryBlock: React.FC<GalleryBlockProps> = ({ id, items, columns, 
           />
         )}
         <div className="container relative z-10 py-16">
+          {title && <h2 className="text-3xl font-bold mb-8 text-foreground">{title}</h2>}
           <div className={`grid grid-cols-1 ${colClass} gap-6 items-start`}>
             {(items || []).map((item, index) => (
               <Card key={index} className="flex flex-col overflow-hidden">

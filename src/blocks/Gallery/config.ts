@@ -15,6 +15,11 @@ export const Gallery: Block = {
   interfaceName: 'GalleryBlock',
   fields: [
     {
+      name: 'title',
+      type: 'text',
+      label: 'Title',
+    },
+    {
       name: 'columns',
       type: 'select',
       defaultValue: '3',

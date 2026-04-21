@@ -14,6 +14,11 @@ export const FormBlock: Block = {
   interfaceName: 'FormBlock',
   fields: [
     {
+      name: 'title',
+      type: 'text',
+      label: 'Title',
+    },
+    {
       name: 'form',
       type: 'relationship',
       relationTo: 'forms',

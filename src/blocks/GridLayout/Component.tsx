@@ -72,7 +72,7 @@ type GridRegionRow = NonNullable<NonNullable<GridLayoutBlockProps['regions']>[nu
 export const GridLayoutBlock: React.FC<
   GridLayoutBlockProps & { disableInnerContainer?: boolean; background?: any; id?: string }
 > = (props) => {
-  const { columns = 4, rows = 4, gap, cells: cellsRaw, regions, background, id } = props
+  const { title, columns = 4, rows = 4, gap, cells: cellsRaw, regions, background, id } = props
 
   const cols = Math.min(6, Math.max(1, columns))
   const rowCount = Math.min(6, Math.max(1, rows))
@@ -108,6 +108,7 @@ export const GridLayoutBlock: React.FC<
           />
         )}
         <div className="container relative z-10 py-16">
+          {title && <h2 className="text-2xl font-bold mb-8 lg:mb-12">{title}</h2>}
           <div
             className={cn('grid w-full auto-rows-min', gapClass)}
             style={{

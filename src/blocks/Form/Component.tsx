@@ -16,6 +16,7 @@ import { getBackgroundClass, getCustomBackgroundCSS } from '@/utilities/getBackg
 export type FormBlockType = {
   blockName?: string
   blockType?: 'formBlock'
+  title?: string
   enableIntro: boolean
   form: FormType
   introContent?: DefaultTypedEditorState
@@ -28,6 +29,7 @@ export const FormBlock: React.FC<
   } & FormBlockType
 > = (props) => {
   const {
+    title,
     enableIntro,
     form: formFromProps,
     form: { id: formID, confirmationMessage, confirmationType, redirect, submitButtonLabel } = {},
@@ -135,6 +137,7 @@ export const FormBlock: React.FC<
           />
         )}
         <div className="container lg:max-w-[48rem] relative z-10 py-16">
+          {title && <h2 className="text-2xl font-bold mb-8 lg:mb-12">{title}</h2>}
           {enableIntro && introContent && !hasSubmitted && (
             <RichText className="mb-8 lg:mb-12" data={introContent} enableGutter={false} />
           )}

@@ -454,6 +454,7 @@ export interface User {
  * via the `definition` "CallToActionBlock".
  */
 export interface CallToActionBlock {
+  title?: string | null;
   richText?: {
     root: {
       type: string;
@@ -502,6 +503,7 @@ export interface CallToActionBlock {
  * via the `definition` "ContentBlock".
  */
 export interface ContentBlock {
+  title?: string | null;
   columns?:
     | {
         size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
@@ -552,6 +554,7 @@ export interface ContentBlock {
  * via the `definition` "MediaBlock".
  */
 export interface MediaBlock {
+  title?: string | null;
   media: number | Media;
   id?: string | null;
   blockName?: string | null;
@@ -562,6 +565,7 @@ export interface MediaBlock {
  * via the `definition` "ArchiveBlock".
  */
 export interface ArchiveBlock {
+  title?: string | null;
   introContent?: {
     root: {
       type: string;
@@ -596,6 +600,7 @@ export interface ArchiveBlock {
  * via the `definition` "FormBlock".
  */
 export interface FormBlock {
+  title?: string | null;
   form: number | Form;
   enableIntro?: boolean | null;
   introContent?: {
@@ -884,6 +889,7 @@ export interface AccordionBlock {
  * via the `definition` "GalleryBlock".
  */
 export interface GalleryBlock {
+  title?: string | null;
   columns: '2' | '3' | '4';
   items: {
     image: number | Media;
@@ -988,6 +994,7 @@ export interface StepperBlock {
  * via the `definition` "GridLayoutBlock".
  */
 export interface GridLayoutBlock {
+  title?: string | null;
   columns: number;
   rows: number;
   gap?: ('0' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10' | '12' | '16') | null;
@@ -1389,6 +1396,7 @@ export interface PagesSelect<T extends boolean = true> {
  * via the `definition` "CallToActionBlock_select".
  */
 export interface CallToActionBlockSelect<T extends boolean = true> {
+  title?: T;
   richText?: T;
   links?:
     | T
@@ -1413,6 +1421,7 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
  * via the `definition` "ContentBlock_select".
  */
 export interface ContentBlockSelect<T extends boolean = true> {
+  title?: T;
   columns?:
     | T
     | {
@@ -1439,6 +1448,7 @@ export interface ContentBlockSelect<T extends boolean = true> {
  * via the `definition` "MediaBlock_select".
  */
 export interface MediaBlockSelect<T extends boolean = true> {
+  title?: T;
   media?: T;
   id?: T;
   blockName?: T;
@@ -1448,6 +1458,7 @@ export interface MediaBlockSelect<T extends boolean = true> {
  * via the `definition` "ArchiveBlock_select".
  */
 export interface ArchiveBlockSelect<T extends boolean = true> {
+  title?: T;
   introContent?: T;
   populateBy?: T;
   relationTo?: T;
@@ -1462,6 +1473,7 @@ export interface ArchiveBlockSelect<T extends boolean = true> {
  * via the `definition` "FormBlock_select".
  */
 export interface FormBlockSelect<T extends boolean = true> {
+  title?: T;
   form?: T;
   enableIntro?: T;
   introContent?: T;
@@ -1506,6 +1518,7 @@ export interface AccordionBlockSelect<T extends boolean = true> {
  * via the `definition` "GalleryBlock_select".
  */
 export interface GalleryBlockSelect<T extends boolean = true> {
+  title?: T;
   columns?: T;
   items?:
     | T
@@ -1556,6 +1569,7 @@ export interface StepperBlockSelect<T extends boolean = true> {
  * via the `definition` "GridLayoutBlock_select".
  */
 export interface GridLayoutBlockSelect<T extends boolean = true> {
+  title?: T;
   columns?: T;
   rows?: T;
   gap?: T;

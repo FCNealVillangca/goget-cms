@@ -20,6 +20,7 @@ type Props = MediaBlockProps & {
 
 export const MediaBlock: React.FC<Props> = (props) => {
   const {
+    title,
     captionClassName,
     className,
     enableGutter = true,
@@ -42,6 +43,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
         className,
       )}
     >
+      {title && <h2 className="text-2xl font-bold mb-8 lg:mb-12">{title}</h2>}
       {(media || staticImage) && (
         <Media
           imgClassName={cn('border border-border rounded-[0.8rem]', imgClassName)}

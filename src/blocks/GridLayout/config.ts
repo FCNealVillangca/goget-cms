@@ -18,6 +18,11 @@ export const GridLayout: Block = {
   },
   fields: [
     {
+      name: 'title',
+      type: 'text',
+      label: 'Title',
+    },
+    {
       type: 'row',
       fields: [
         {
