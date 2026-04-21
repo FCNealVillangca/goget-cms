@@ -10,6 +10,18 @@ export const Header: GlobalConfig = {
   },
   fields: [
     {
+      name: 'logo',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Logo',
+    },
+    {
+      name: 'brandName',
+      type: 'text',
+      label: 'Brand Name',
+      defaultValue: 'FrenchAcademy',
+    },
+    {
       name: 'navItems',
       type: 'array',
       fields: [
@@ -24,6 +36,31 @@ export const Header: GlobalConfig = {
           RowLabel: '@/Header/RowLabel#RowLabel',
         },
       },
+    },
+    {
+      name: 'ctaText',
+      type: 'text',
+      label: 'CTA Button Text',
+      defaultValue: 'Get Started',
+    },
+    {
+      name: 'ctaLink',
+      type: 'group',
+      label: 'CTA Link',
+      fields: [
+        {
+          name: 'label',
+          type: 'text',
+        },
+        {
+          name: 'url',
+          type: 'text',
+        },
+        {
+          name: 'newTab',
+          type: 'checkbox',
+        },
+      ],
     },
   ],
   hooks: {

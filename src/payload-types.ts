@@ -159,7 +159,7 @@ export interface Page {
   id: number;
   title: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'landing';
     richText?: {
       root: {
         type: string;
@@ -2044,6 +2044,8 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Header {
   id: number;
+  logo?: (number | null) | Media;
+  brandName?: string | null;
   navItems?:
     | {
         link: {
@@ -2064,6 +2066,12 @@ export interface Header {
         id?: string | null;
       }[]
     | null;
+  ctaText?: string | null;
+  ctaLink?: {
+    label?: string | null;
+    url?: string | null;
+    newTab?: boolean | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -2073,6 +2081,34 @@ export interface Header {
  */
 export interface Footer {
   id: number;
+  logo?: (number | null) | Media;
+  brandName?: string | null;
+  description?: string | null;
+  socialLinks?:
+    | {
+        platform?: ('website' | 'email') | null;
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
   navItems?:
     | {
         link: {
@@ -2090,6 +2126,24 @@ export interface Footer {
           url?: string | null;
           label: string;
         };
+        id?: string | null;
+      }[]
+    | null;
+  phone?: string | null;
+  email?: string | null;
+  ctaTitle?: string | null;
+  ctaDescription?: string | null;
+  ctaButtonText?: string | null;
+  ctaLink?: {
+    label?: string | null;
+    url?: string | null;
+    newTab?: boolean | null;
+  };
+  copyright?: string | null;
+  legalLinks?:
+    | {
+        label?: string | null;
+        url?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -2101,6 +2155,8 @@ export interface Footer {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
+  logo?: T;
+  brandName?: T;
   navItems?:
     | T
     | {
@@ -2115,6 +2171,14 @@ export interface HeaderSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  ctaText?: T;
+  ctaLink?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        newTab?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -2124,6 +2188,25 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
+  logo?: T;
+  brandName?: T;
+  description?: T;
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
   navItems?:
     | T
     | {
@@ -2136,6 +2219,26 @@ export interface FooterSelect<T extends boolean = true> {
               url?: T;
               label?: T;
             };
+        id?: T;
+      };
+  phone?: T;
+  email?: T;
+  ctaTitle?: T;
+  ctaDescription?: T;
+  ctaButtonText?: T;
+  ctaLink?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        newTab?: T;
+      };
+  copyright?: T;
+  legalLinks?:
+    | T
+    | {
+        label?: T;
+        url?: T;
         id?: T;
       };
   updatedAt?: T;
