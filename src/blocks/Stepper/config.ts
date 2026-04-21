@@ -7,6 +7,11 @@ export const Stepper: Block = {
   interfaceName: 'StepperBlock',
   fields: [
     {
+      name: 'title',
+      type: 'text',
+      label: 'Title',
+    },
+    {
       name: 'steps',
       type: 'array',
       required: true,

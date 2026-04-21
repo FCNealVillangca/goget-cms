@@ -950,6 +950,7 @@ export interface GalleryBlock {
  * via the `definition` "StepperBlock".
  */
 export interface StepperBlock {
+  title?: string | null;
   steps: {
     title: string;
     description?: string | null;
@@ -1545,6 +1546,7 @@ export interface GalleryBlockSelect<T extends boolean = true> {
  * via the `definition` "StepperBlock_select".
  */
 export interface StepperBlockSelect<T extends boolean = true> {
+  title?: T;
   steps?:
     | T
     | {

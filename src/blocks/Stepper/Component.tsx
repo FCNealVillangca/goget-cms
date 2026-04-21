@@ -4,7 +4,7 @@ import { Media } from '@/components/Media'
 import { getBackgroundClass, getCustomBackgroundCSS } from '@/utilities/getBackground'
 import { cn } from '@/utilities/ui'
 
-export const StepperBlock: React.FC<StepperBlockProps> = ({ id, steps, background }) => {
+export const StepperBlock: React.FC<StepperBlockProps> = ({ id, title, steps, background }) => {
   const list = steps ?? []
   const isImage = background?.type === 'image' && background.image
   const presetClass = getBackgroundClass(background)
@@ -29,6 +29,7 @@ export const StepperBlock: React.FC<StepperBlockProps> = ({ id, steps, backgroun
         )}
 
         <div className="container relative z-10 py-16">
+          {title && <h2 className="text-3xl font-bold mb-8">{title}</h2>}
           {/* Main Container: Stacked on mobile, side-by-side on desktop */}
           <div className="flex flex-col md:flex-row md:items-start">
             {list.map((step, index) => (
