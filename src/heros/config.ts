@@ -39,6 +39,10 @@ export const hero: Field = {
           label: 'Landing',
           value: 'landing',
         },
+        {
+          label: 'About',
+          value: 'about',
+        },
       ],
       required: true,
     },
