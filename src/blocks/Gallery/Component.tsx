@@ -36,9 +36,9 @@ export const GalleryBlock: React.FC<GalleryBlockProps> = ({
         )}
         <div className="container relative z-10 py-16">
           {title && <h2 className="text-3xl font-bold mb-8">{title}</h2>}
-          <div className={`grid grid-cols-1 ${colClass} gap-6 items-start`}>
+          <div className={`grid grid-cols-1 ${colClass} gap-6 items-stretch`}>
             {(items || []).map((item, index) => (
-              <Card key={index} className="flex flex-col overflow-hidden">
+              <Card key={index} className="flex flex-col overflow-hidden bg-background">
                 {item.image && typeof item.image === 'object' && (
                   <div className="relative aspect-video w-full overflow-hidden">
                     <Media resource={item.image} fill imgClassName="object-cover" />
@@ -50,7 +50,7 @@ export const GalleryBlock: React.FC<GalleryBlockProps> = ({
                   </CardHeader>
                 )}
                 {item.richText && (
-                  <CardContent className="text-muted-foreground text-sm flex-grow">
+                  <CardContent className="text-muted-foreground grow">
                     <RichText
                       className="mb-0"
                       data={item.richText}

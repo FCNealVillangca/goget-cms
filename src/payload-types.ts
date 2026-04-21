@@ -892,7 +892,7 @@ export interface GalleryBlock {
   title?: string | null;
   columns: '2' | '3' | '4';
   items: {
-    image: number | Media;
+    image?: (number | null) | Media;
     title: string;
     richText: {
       root: {

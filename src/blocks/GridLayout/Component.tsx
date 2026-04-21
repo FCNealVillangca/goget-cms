@@ -130,7 +130,7 @@ export const GridLayoutBlock: React.FC<
                 <div
                   key={regionId}
                   className={cn(
-                    'min-h-0 min-w-0 overflow-hidden rounded',
+                    'relative min-h-0 min-w-0 overflow-hidden rounded',
                     !validRect && 'ring-2 ring-destructive/80',
                   )}
                   style={{ gridColumn, gridRow }}
@@ -148,7 +148,8 @@ export const GridLayoutBlock: React.FC<
                   )}
                   {data?.media && typeof data.media === 'object' && data.media && (
                     <Media
-                      imgClassName="w-full rounded-md border border-border"
+                      fill
+                      imgClassName="object-cover rounded-md border border-border"
                       resource={data.media}
                     />
                   )}
