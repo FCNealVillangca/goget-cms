@@ -9,6 +9,7 @@ import { HighImpactHero } from '@/heros/HighImpact'
 import { LandingHero } from '@/heros/Landing'
 import { LowImpactHero } from '@/heros/LowImpact'
 import { MediumImpactHero } from '@/heros/MediumImpact'
+import { log } from 'console'
 
 const heroes = {
   about: AboutHero,
@@ -22,7 +23,7 @@ const heroes = {
 
 export const RenderHero: React.FC<Page['hero']> = (props) => {
   const { type } = props || {}
-
+  log('RenderHero props:', JSON.stringify(props))
   if (!type || type === 'none') return null
 
   const HeroToRender = heroes[type]

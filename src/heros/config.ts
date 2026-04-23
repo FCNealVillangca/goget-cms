@@ -83,6 +83,30 @@ export const hero: Field = {
       relationTo: 'media',
       required: true,
     },
+    {
+      name: 'badge',
+      type: 'text',
+      admin: {
+        condition: (_, { type }) => type === 'landing',
+      },
+      label: 'Badge Text',
+    },
+    {
+      name: 'title',
+      type: 'text',
+      admin: {
+        condition: (_, { type }) => type === 'landing',
+      },
+      label: 'Title',
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+      admin: {
+        condition: (_, { type }) => type === 'landing',
+      },
+      label: 'Description',
+    },
   ],
   label: false,
 }

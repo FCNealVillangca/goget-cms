@@ -4,15 +4,15 @@ import { useHeaderTheme } from '@/providers/HeaderTheme'
 import React, { useEffect } from 'react'
 import { ArrowRight, Info } from 'lucide-react'
 
-import type { Page } from '@/payload-types'
+import type { HomeHeroBlock } from '@/payload-types'
 
 import { getMediaUrl } from '@/utilities/getMediaUrl'
 
-export const LandingHero: React.FC<Page['hero']> = ({
-  media,
+export const HomeHeroBlock: React.FC<HomeHeroBlock> = ({
   badge,
   title,
   description,
+  media,
   links,
 }) => {
   const { setHeaderTheme } = useHeaderTheme()
@@ -39,6 +39,7 @@ export const LandingHero: React.FC<Page['hero']> = ({
           )}
 
           {description && <p className="text-lg text-slate-600 max-w-lg">{description}</p>}
+
           {links && links.length > 0 && (
             <div className="flex flex-wrap gap-4">
               {links.map((link, index) => (

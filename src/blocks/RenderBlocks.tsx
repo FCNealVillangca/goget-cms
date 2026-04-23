@@ -20,6 +20,7 @@ import { AboutBlock03Block } from '@/blocks/AboutBlock03/Component'
 import { ExamSupportBlock } from '@/blocks/ExamSupportBlock/Component'
 import { ExamSupportBlock02 } from '@/blocks/ExamSupportBlock02/Component'
 import { ResultsBlock } from '@/blocks/ResultsBlock/Component'
+import { HomeHeroBlock } from '@/blocks/HomeHeroBlock/Component'
 import { FaqBlock01 } from '@/blocks/FaqBlock01/Component'
 
 const blockComponents = {
@@ -41,6 +42,7 @@ const blockComponents = {
   examSupportBlock: ExamSupportBlock,
   examSupport02: ExamSupportBlock02,
   resultsBlock: ResultsBlock,
+  homeHeroBlock: HomeHeroBlock,
   faqBlock01: FaqBlock01,
 }
 
