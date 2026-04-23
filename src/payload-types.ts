@@ -159,7 +159,7 @@ export interface Page {
   id: number;
   title: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'landing' | 'about' | 'examSupport' | 'results';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'about' | 'examSupport' | 'results';
     richText?: {
       root: {
         type: string;
@@ -200,6 +200,9 @@ export interface Page {
         }[]
       | null;
     media?: (number | null) | Media;
+    badge?: string | null;
+    title?: string | null;
+    description?: string | null;
   };
   layout: (
     | CallToActionBlock
@@ -214,6 +217,7 @@ export interface Page {
     | HomeBlock01Block
     | HomeBlock02Block
     | HomeBlock03Block
+    | HomeHeroBlock
     | AboutBlock01Block
     | AboutBlock02Block
     | AboutBlock03Block
@@ -1194,6 +1198,73 @@ export interface HomeBlock03Block {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomeHeroBlock".
+ */
+export interface HomeHeroBlock {
+  badge?: string | null;
+  title?: string | null;
+  description?: string | null;
+  media?: (number | null) | Media;
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  background?: {
+    type?: ('none' | 'preset' | 'custom' | 'image') | null;
+    /**
+     * Theme-aware — adapts automatically to light and dark mode.
+     */
+    presetColor?:
+      | (
+          | 'bg-background text-foreground'
+          | 'bg-card text-card-foreground'
+          | 'bg-popover text-popover-foreground'
+          | 'bg-primary text-primary-foreground'
+          | 'bg-secondary text-secondary-foreground'
+          | 'bg-muted text-muted-foreground'
+          | 'bg-accent text-accent-foreground'
+          | 'bg-destructive text-destructive-foreground'
+        )
+      | null;
+    /**
+     * Any valid CSS color value: hex, rgb(), oklch(), hsl(), etc.
+     */
+    customLight?: string | null;
+    /**
+     * Optional. If left empty, the light color is used in both modes.
+     */
+    customDark?: string | null;
+    /**
+     * Displayed as a full-bleed background behind the block content.
+     */
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'homeHeroBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "AboutBlock01Block".
  */
 export interface AboutBlock01Block {
@@ -1764,6 +1835,9 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
             };
         media?: T;
+        badge?: T;
+        title?: T;
+        description?: T;
       };
   layout?:
     | T
@@ -1780,6 +1854,7 @@ export interface PagesSelect<T extends boolean = true> {
         homeBlock01?: T | HomeBlock01BlockSelect<T>;
         homeBlock02?: T | HomeBlock02BlockSelect<T>;
         homeBlock03?: T | HomeBlock03BlockSelect<T>;
+        homeHeroBlock?: T | HomeHeroBlockSelect<T>;
         aboutBlock01?: T | AboutBlock01BlockSelect<T>;
         aboutBlock02?: T | AboutBlock02BlockSelect<T>;
         aboutBlock03?: T | AboutBlock03BlockSelect<T>;
@@ -2046,6 +2121,42 @@ export interface HomeBlock02BlockSelect<T extends boolean = true> {
  * via the `definition` "HomeBlock03Block_select".
  */
 export interface HomeBlock03BlockSelect<T extends boolean = true> {
+  background?:
+    | T
+    | {
+        type?: T;
+        presetColor?: T;
+        customLight?: T;
+        customDark?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomeHeroBlock_select".
+ */
+export interface HomeHeroBlockSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  description?: T;
+  media?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
   background?:
     | T
     | {

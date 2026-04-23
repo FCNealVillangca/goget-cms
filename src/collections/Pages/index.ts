@@ -14,6 +14,7 @@ import { GridLayout } from '../../blocks/GridLayout/config'
 import { HomeBlock01 } from '../../blocks/HomeBlock01/config'
 import { HomeBlock02 } from '../../blocks/HomeBlock02/config'
 import { HomeBlock03 } from '../../blocks/HomeBlock03/config'
+import { HomeHeroBlock } from '../../blocks/HomeHeroBlock/config'
 import { AboutBlock01 } from '../../blocks/AboutBlock01/config'
 import { AboutBlock02 } from '../../blocks/AboutBlock02/config'
 import { AboutBlock03 } from '../../blocks/AboutBlock03/config'
@@ -99,6 +100,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 HomeBlock01,
                 HomeBlock02,
                 HomeBlock03,
+                HomeHeroBlock,
                 AboutBlock01,
                 AboutBlock02,
                 AboutBlock03,

@@ -8,7 +8,13 @@ import type { Page } from '@/payload-types'
 
 import { getMediaUrl } from '@/utilities/getMediaUrl'
 
-export const LandingHero: React.FC<Page['hero']> = ({ media }) => {
+export const LandingHero: React.FC<Page['hero']> = ({
+  media,
+  badge,
+  title,
+  description,
+  links,
+}) => {
   const { setHeaderTheme } = useHeaderTheme()
 
   useEffect(() => {
@@ -20,36 +26,37 @@ export const LandingHero: React.FC<Page['hero']> = ({ media }) => {
       <div className="container px-6 grid md:grid-cols-2 gap-12 items-center">
         {/* Left Content */}
         <div className="space-y-8 order-2 md:order-1">
-          <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-bold rounded-md uppercase tracking-wider">
-            Interactive Learning
-          </div>
+          {badge && (
+            <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-bold rounded-md uppercase tracking-wider">
+              {badge}
+            </div>
+          )}
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight">
-            Improve Your French <br />
-            <span className="text-blue-800">& Feel Confident</span> for <br />
-            GCSE & A-Level Exams
-          </h1>
+          {title && (
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight">
+              {title}
+            </h1>
+          )}
 
-          <p className="text-lg text-slate-600 max-w-lg">
-            Fun and interactive French lessons designed specifically for kids and teenagers. Master
-            the exams with native tutors who make learning enjoyable.
-          </p>
-
-          <div className="flex flex-wrap gap-4">
-            <a
-              href="#"
-              className="bg-blue-800 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:bg-blue-900 transition-all shadow-lg hover:shadow-blue-800/20"
-            >
-              Book Free Trial
-              <ArrowRight size={20} />
-            </a>
-            <a
-              href="#"
-              className="border-2 border-slate-200 bg-white px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition-all"
-            >
-              Learn More
-            </a>
-          </div>
+          {description && <p className="text-lg text-slate-600 max-w-lg">{description}</p>}
+          {links && links.length > 0 && (
+            <div className="flex flex-wrap gap-4">
+              {links.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.link.url || '#'}
+                  className={
+                    link.link.appearance === 'default'
+                      ? 'bg-blue-800 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:bg-blue-900 transition-all shadow-lg hover:shadow-blue-800/20'
+                      : 'border-2 border-slate-200 bg-white px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition-all'
+                  }
+                >
+                  {link.link.label}
+                  {link.link.appearance === 'default' && <ArrowRight size={20} />}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Right Image */}
@@ -59,7 +66,11 @@ export const LandingHero: React.FC<Page['hero']> = ({ media }) => {
           <div className="relative w-full max-w-md transition-transform duration-700 hover:scale-[1.02]">
             <div className="relative w-full aspect-square rounded-full border-10 border-white shadow-[0_32px_80px_-15px_rgba(0,0,0,0.15)] overflow-hidden">
               <img
-                src="/assets/landingpagebanner.jpg"
+                src={
+                  media && typeof media === 'object' && 'url' in media
+                    ? getMediaUrl(media.url)
+                    : '/assets/landingpagebanner.jpg'
+                }
                 alt="Teacher and student learning French"
                 className="w-full h-full object-cover"
               />

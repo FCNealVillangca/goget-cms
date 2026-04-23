@@ -35,10 +35,7 @@ export const hero: Field = {
           label: 'Low Impact',
           value: 'lowImpact',
         },
-        {
-          label: 'Landing',
-          value: 'landing',
-        },
+
         {
           label: 'About',
           value: 'about',
@@ -78,10 +75,34 @@ export const hero: Field = {
       name: 'media',
       type: 'upload',
       admin: {
-        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact', 'landing'].includes(type),
+        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
       },
       relationTo: 'media',
       required: true,
+    },
+    {
+      name: 'badge',
+      type: 'text',
+      admin: {
+        condition: (_, { type }) => type === 'landing',
+      },
+      label: 'Badge Text',
+    },
+    {
+      name: 'title',
+      type: 'text',
+      admin: {
+        condition: (_, { type }) => type === 'landing',
+      },
+      label: 'Title',
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+      admin: {
+        condition: (_, { type }) => type === 'landing',
+      },
+      label: 'Description',
     },
   ],
   label: false,
