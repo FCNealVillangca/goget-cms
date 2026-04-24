@@ -17,8 +17,9 @@ import { HomeBlock03Block } from '@/blocks/HomeBlock03/Component'
 import { AboutBlock01Block } from '@/blocks/AboutBlock01/Component'
 import { AboutBlock02Block } from '@/blocks/AboutBlock02/Component'
 import { AboutBlock03Block } from '@/blocks/AboutBlock03/Component'
-import { ExamSupportBlock } from '@/blocks/ExamSupportBlock/Component'
-import { ExamSupportBlock02 } from '@/blocks/ExamSupportBlock02/Component'
+import { ExamBlock01 } from '@/blocks/examBlock01/Component'
+import { ExamBlock02 } from '@/blocks/examBlock02/Component'
+import { ExamHeroBlock } from '@/blocks/examHeroBlock/Component'
 import { ResultsBlock } from '@/blocks/ResultsBlock/Component'
 import { HomeHeroBlock } from '@/blocks/HomeHeroBlock/Component'
 import { FaqBlock01 } from '@/blocks/FaqBlock01/Component'
@@ -39,8 +40,9 @@ const blockComponents = {
   aboutBlock01: AboutBlock01Block,
   aboutBlock02: AboutBlock02Block,
   aboutBlock03: AboutBlock03Block,
-  examSupportBlock: ExamSupportBlock,
-  examSupport02: ExamSupportBlock02,
+  examBlock01: ExamBlock01,
+  examBlock02: ExamBlock02,
+  examHeroBlock: ExamHeroBlock,
   resultsBlock: ResultsBlock,
   homeHeroBlock: HomeHeroBlock,
   faqBlock01: FaqBlock01,
