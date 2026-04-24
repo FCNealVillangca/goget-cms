@@ -15,10 +15,9 @@ export const Faqs: CollectionConfig<'faqs'> = {
   defaultPopulate: {
     question: true,
     answer: true,
-    slug: true,
   },
   admin: {
-    defaultColumns: ['question', 'slug', 'updatedAt'],
+    defaultColumns: ['question', 'updatedAt'],
     useAsTitle: 'question',
   },
   fields: [
@@ -61,7 +60,6 @@ export const Faqs: CollectionConfig<'faqs'> = {
         ],
       },
     },
-    slugField(),
   ],
   versions: {
     drafts: {

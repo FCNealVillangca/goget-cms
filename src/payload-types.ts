@@ -74,6 +74,7 @@ export interface Config {
     users: User;
     faqs: Faq;
     testimonials: Testimonial;
+    struggles: Struggle;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -98,6 +99,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    struggles: StrugglesSelect<false> | StrugglesSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -1794,11 +1796,6 @@ export interface Faq {
    */
   featured?: boolean | null;
   publishedAt?: string | null;
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -1812,17 +1809,25 @@ export interface Testimonial {
   quote: string;
   name: string;
   role: string;
-  avatar: number | Media;
+  avatar?: (number | null) | Media;
   /**
    * Mark as featured testimonial
    */
   featured?: boolean | null;
   publishedAt?: string | null;
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "struggles".
+ */
+export interface Struggle {
+  id: number;
+  title: string;
+  description: string;
+  publishedAt?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -2044,6 +2049,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'testimonials';
         value: number | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'struggles';
+        value: number | Struggle;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -2950,8 +2959,6 @@ export interface FaqsSelect<T extends boolean = true> {
   answer?: T;
   featured?: T;
   publishedAt?: T;
-  generateSlug?: T;
-  slug?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -2967,8 +2974,18 @@ export interface TestimonialsSelect<T extends boolean = true> {
   avatar?: T;
   featured?: T;
   publishedAt?: T;
-  generateSlug?: T;
-  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "struggles_select".
+ */
+export interface StrugglesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  publishedAt?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -3489,6 +3506,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'testimonials';
           value: number | Testimonial;
+        } | null)
+      | ({
+          relationTo: 'struggles';
+          value: number | Struggle;
         } | null);
     global?: string | null;
     user?: (number | null) | User;

@@ -22,9 +22,10 @@ export const TestimonialList: React.FC<TestimonialListProps> = ({ testimonials }
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       {testimonials.map((t, idx) => {
-        const isVideo = typeof t.avatar === 'object' && t.avatar?.mimeType?.startsWith('video/')
+        const isVideo =
+          t.avatar && typeof t.avatar === 'object' && t.avatar?.mimeType?.startsWith('video/')
         const videoUrl =
-          typeof t.avatar === 'object'
+          t.avatar && typeof t.avatar === 'object'
             ? t.avatar.url
             : typeof t.avatar === 'string'
               ? t.avatar

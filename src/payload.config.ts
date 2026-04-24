@@ -9,6 +9,7 @@ import { Faqs } from './collections/Faqs'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
+import { Struggles } from './collections/Struggles'
 import { Testimonials } from './collections/Testimonials'
 import { Users } from './collections/Users'
 import { Footer } from './Footer/config'
@@ -62,9 +63,10 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
     },
   }),
-  collections: [Pages, Posts, Media, Categories, Users, Faqs, Testimonials],
+  collections: [Pages, Posts, Media, Categories, Users, Faqs, Testimonials, Struggles],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins,

@@ -31,6 +31,8 @@ export const HomeHeroBlock: React.FC<HomeHeroBlock> = ({
   const customCSS = getCustomBackgroundCSS(background, id)
   const sectionId = background?.type === 'custom' && id ? `block-bg-${id}` : undefined
 
+  const hasLinks = links && links.length > 0
+
   return (
     <>
       {customCSS && <style dangerouslySetInnerHTML={{ __html: customCSS }} />}
@@ -48,23 +50,22 @@ export const HomeHeroBlock: React.FC<HomeHeroBlock> = ({
         <div className="container relative z-10 py-16 md:py-24 px-6 grid md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-8 order-2 md:order-1">
-            {badge && (
-              <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-bold rounded-md uppercase tracking-wider">
-                {badge}
-              </div>
-            )}
+            <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-bold rounded-md uppercase tracking-wider">
+              {badge || 'Badge Text'}
+            </div>
 
-            {title && (
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight">
-                {title}
-              </h1>
-            )}
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight">
+              {title || 'Your Hero Title Here'}
+            </h1>
 
-            {description && <p className="text-lg text-slate-600 max-w-lg">{description}</p>}
+            <p className="text-lg text-slate-600 max-w-lg">
+              {description ||
+                'Add a compelling description to engage your visitors and explain your value proposition.'}
+            </p>
 
-            {links && links.length > 0 && (
-              <div className="flex flex-wrap gap-4">
-                {links.map((link, index) => (
+            <div className="flex flex-wrap gap-4">
+              {hasLinks ? (
+                links.map((link, index) => (
                   <a
                     key={index}
                     href={link.link.url || '#'}
@@ -77,9 +78,19 @@ export const HomeHeroBlock: React.FC<HomeHeroBlock> = ({
                     {link.link.label}
                     {link.link.appearance === 'default' && <ArrowRight size={20} />}
                   </a>
-                ))}
-              </div>
-            )}
+                ))
+              ) : (
+                <>
+                  <a className="bg-blue-800 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2">
+                    Primary Link
+                    <ArrowRight size={20} />
+                  </a>
+                  <a className="border-2 border-slate-200 bg-white px-8 py-4 rounded-xl font-bold">
+                    Secondary Link
+                  </a>
+                </>
+              )}
+            </div>
           </div>
 
           {/* Right Image */}

@@ -4,8 +4,8 @@ import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { slugField } from 'payload'
 
-export const Testimonials: CollectionConfig<'testimonials'> = {
-  slug: 'testimonials',
+export const Struggles: CollectionConfig<'struggles'> = {
+  slug: 'struggles',
   access: {
     create: authenticated,
     delete: authenticated,
@@ -13,45 +13,23 @@ export const Testimonials: CollectionConfig<'testimonials'> = {
     update: authenticated,
   },
   defaultPopulate: {
-    quote: true,
-    name: true,
-    role: true,
-    avatar: true,
+    title: true,
+    description: true,
   },
   admin: {
-    defaultColumns: ['name', 'role', 'updatedAt'],
-    useAsTitle: 'name',
+    defaultColumns: ['title', 'updatedAt'],
+    useAsTitle: 'title',
   },
   fields: [
     {
-      name: 'quote',
+      name: 'title',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'description',
       type: 'textarea',
       required: true,
-    },
-    {
-      name: 'name',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'role',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'avatar',
-      type: 'upload',
-      relationTo: 'media',
-      required: false,
-    },
-    {
-      name: 'featured',
-      type: 'checkbox',
-      label: 'Featured',
-      defaultValue: false,
-      admin: {
-        description: 'Mark as featured testimonial',
-      },
     },
     {
       name: 'publishedAt',
