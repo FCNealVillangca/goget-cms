@@ -11,8 +11,14 @@ interface TestimonialCardProps {
 }
 
 export const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, isBig = false }) => {
-  const isVideo = testimonial.avatar?.mimeType?.startsWith('video/')
-  const mediaUrl = testimonial.avatar?.url
+  const isVideo =
+    testimonial.avatar && typeof testimonial.avatar === 'object'
+      ? testimonial.avatar?.mimeType?.startsWith('video/')
+      : false
+  const mediaUrl =
+    testimonial.avatar && typeof testimonial.avatar === 'object'
+      ? testimonial.avatar?.url
+      : undefined
 
   return (
     <div
@@ -37,7 +43,14 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, i
               </DialogTrigger>
               <DialogContent className="max-w-4xl">
                 <video controls className="w-full">
-                  <source src={mediaUrl} type={testimonial.avatar?.mimeType} />
+                  <source
+                    src={mediaUrl}
+                    type={
+                      testimonial.avatar && typeof testimonial.avatar === 'object'
+                        ? testimonial.avatar.mimeType || 'video/mp4'
+                        : 'video/mp4'
+                    }
+                  />
                   Your browser does not support the video tag.
                 </video>
               </DialogContent>
@@ -90,7 +103,14 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, i
             </DialogTrigger>
             <DialogContent className="max-w-4xl">
               <video controls className="w-full">
-                <source src={mediaUrl} type={testimonial.avatar?.mimeType} />
+                <source
+                  src={mediaUrl}
+                  type={
+                    testimonial.avatar && typeof testimonial.avatar === 'object'
+                      ? testimonial.avatar.mimeType || 'video/mp4'
+                      : 'video/mp4'
+                  }
+                />
                 Your browser does not support the video tag.
               </video>
             </DialogContent>

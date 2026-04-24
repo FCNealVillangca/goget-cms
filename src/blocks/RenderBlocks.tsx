@@ -8,6 +8,7 @@ import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { AccordionBlock } from '@/blocks/Accordion/Component'
+import { AboutHeroBlock } from '@/blocks/AboutHeroBlock/Component'
 import { GalleryBlock } from '@/blocks/Gallery/Component'
 import { StepperBlock } from '@/blocks/Stepper/Component'
 import { GridLayoutBlock } from '@/blocks/GridLayout/Component'
@@ -41,6 +42,7 @@ const blockComponents = {
   aboutBlock01: AboutBlock01Block,
   aboutBlock02: AboutBlock02Block,
   aboutBlock03: AboutBlock03Block,
+  aboutHeroBlock: AboutHeroBlock,
   examBlock01: ExamBlock01,
   examBlock02: ExamBlock02,
   examHeroBlock: ExamHeroBlock,

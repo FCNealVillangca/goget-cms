@@ -17,6 +17,7 @@ import { Header } from './Header/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+import { cloudinaryStorage } from 'payloadcms-storage-cloudinary'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -69,7 +70,20 @@ export default buildConfig({
   collections: [Pages, Posts, Media, Categories, Users, Faqs, Testimonials, Struggles],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
-  plugins,
+  plugins: [
+    ...plugins,
+    cloudinaryStorage({
+      collections: {
+        media: true,
+      },
+      cloudinaryConfig: {
+        cloud_name: process.env.CLOUDINARY_NAME || '',
+        api_key: process.env.CLOUDINARY_API_KEY || '',
+        api_secret: process.env.CLOUDINARY_API_SECRET || '',
+      },
+      folder: 'mywebsite-media',
+    }),
+  ],
   secret: process.env.PAYLOAD_SECRET,
   sharp,
   typescript: {

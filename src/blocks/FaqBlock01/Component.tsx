@@ -5,6 +5,7 @@ import { getBackgroundClass, getCustomBackgroundCSS } from '@/utilities/getBackg
 import { cn } from '@/utilities/ui'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
+import { FaqList } from './FaqList'
 
 const defaultFaqs = [
   {

@@ -11,8 +11,14 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import type { Faq } from '@/payload-types'
 
+interface FaqListItem {
+  id?: string
+  question: string
+  answer: string
+}
+
 interface FaqListProps {
-  faqs: Faq[]
+  faqs: FaqListItem[]
   showContact: boolean
 }
 
@@ -51,7 +57,7 @@ export const FaqList: React.FC<FaqListProps> = ({ faqs, showContact }) => {
 
       <Accordion type="single" collapsible className="w-full">
         {paginatedFaqs.map((faq, idx) => (
-          <AccordionItem key={faq.id} value={`item-${faq.id}`}>
+          <AccordionItem key={faq.id || `faq-${idx}`} value={`item-${faq.id || idx}`}>
             <AccordionTrigger className="text-left font-medium hover:no-underline py-4">
               {faq.question}
             </AccordionTrigger>

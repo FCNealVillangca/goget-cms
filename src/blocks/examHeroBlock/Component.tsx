@@ -3,13 +3,13 @@
 import { useHeaderTheme } from '@/providers/HeaderTheme'
 import React, { useEffect } from 'react'
 
-import type { ExamHeroBlock } from '@/payload-types'
+import type { ExamHeroBlock as ExamHeroBlockType } from '@/payload-types'
 
 import { Media } from '@/components/Media'
 import { getBackgroundClass, getCustomBackgroundCSS } from '@/utilities/getBackground'
 import { cn } from '@/utilities/ui'
 
-export const ExamHeroBlock: React.FC<ExamHeroBlock> = ({
+export const ExamHeroBlock: React.FC<ExamHeroBlockType> = ({
   id,
   background,
   title,

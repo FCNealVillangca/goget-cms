@@ -2,20 +2,19 @@
 
 import React from 'react'
 import { Quote } from 'lucide-react'
-import { Media } from '@/components/Media'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import type { Testimonial, Media } from '@/payload-types'
 
 interface TestimonialItem {
-  id?: string
+  id?: string | number
   quote: string
   name: string
   role: string
-  avatar: Media | string | null
+  avatar?: Media | string | number | null | undefined
 }
 
 interface TestimonialListProps {
-  testimonials: TestimonialItem[]
+  testimonials: any[]
 }
 
 export const TestimonialList: React.FC<TestimonialListProps> = ({ testimonials }) => {
@@ -59,7 +58,14 @@ export const TestimonialList: React.FC<TestimonialListProps> = ({ testimonials }
                   </DialogTrigger>
                   <DialogContent className="max-w-4xl">
                     <video controls className="w-full">
-                      <source src={videoUrl} type={t.avatar?.mimeType} />
+                      <source
+                        src={videoUrl}
+                        type={
+                          t.avatar && typeof t.avatar === 'object' && t.avatar.mimeType
+                            ? t.avatar.mimeType
+                            : 'video/mp4'
+                        }
+                      />
                       Your browser does not support the video tag.
                     </video>
                   </DialogContent>

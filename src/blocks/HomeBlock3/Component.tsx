@@ -1,5 +1,5 @@
 import React from 'react'
-import type { HomeBlock3 as HomeBlock3Props, Testimonial } from '@/payload-types'
+import type { Testimonial } from '@/payload-types'
 import { Media } from '@/components/Media'
 import { getBackgroundClass, getCustomBackgroundCSS } from '@/utilities/getBackground'
 import { cn } from '@/utilities/ui'
@@ -7,11 +7,11 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { TestimonialCard } from './TestimonialCard'
 
-export const HomeBlock3: React.FC<
-  HomeBlock3Props & {
-    id?: string
-  }
-> = async ({ id, background, limit = 6 }) => {
+export const HomeBlock3: React.FC<{
+  id?: string
+  background?: any
+  limit?: number
+}> = async ({ id, background, limit = 6 }) => {
   const payload = await getPayload({ config: configPromise })
 
   const fetchedTestimonials = await payload.find({

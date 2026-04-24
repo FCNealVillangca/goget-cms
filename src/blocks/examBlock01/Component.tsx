@@ -4,6 +4,7 @@ import type { ExamBlock01 as ExamBlock01Props } from '@/payload-types'
 
 import { getBackgroundClass, getCustomBackgroundCSS } from '@/utilities/getBackground'
 import { cn } from '@/utilities/ui'
+import { Media } from '@/components/Media'
 
 const iconMap = {
   target: Target,

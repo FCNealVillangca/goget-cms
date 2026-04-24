@@ -4,14 +4,14 @@ import { useHeaderTheme } from '@/providers/HeaderTheme'
 import React, { useEffect } from 'react'
 import { ArrowRight, Info } from 'lucide-react'
 
-import type { HomeHeroBlock } from '@/payload-types'
+import type { HomeHeroBlock as HomeHeroBlockType } from '@/payload-types'
 
 import { getMediaUrl } from '@/utilities/getMediaUrl'
 import { Media } from '@/components/Media'
 import { getBackgroundClass, getCustomBackgroundCSS } from '@/utilities/getBackground'
 import { cn } from '@/utilities/ui'
 
-export const HomeHeroBlock: React.FC<HomeHeroBlock> = ({
+export const HomeHeroBlock: React.FC<HomeHeroBlockType> = ({
   id,
   background,
   badge,

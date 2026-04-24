@@ -3,14 +3,14 @@
 import React from 'react'
 import { Sparkles } from 'lucide-react'
 
-import type { AboutHeroBlock } from '@/payload-types'
+import type { AboutHeroBlock as AboutHeroBlockType } from '@/payload-types'
 
 import { getMediaUrl } from '@/utilities/getMediaUrl'
 import { Media } from '@/components/Media'
 import { getBackgroundClass, getCustomBackgroundCSS } from '@/utilities/getBackground'
 import { cn } from '@/utilities/ui'
 
-export const AboutHeroBlock: React.FC<AboutHeroBlock> = ({
+export const AboutHeroBlock: React.FC<AboutHeroBlockType> = ({
   id,
   background,
   badge,

@@ -37,7 +37,6 @@ export const ExamHeroBlock: Block = {
       name: 'background',
       type: 'group',
       label: 'Background',
-      dbName: 'examHeroBg',
       fields: [
         {
           name: 'type',
@@ -56,7 +55,6 @@ export const ExamHeroBlock: Block = {
           type: 'select',
           label: 'Color',
           defaultValue: 'bg-muted text-muted-foreground',
-          dbName: 'preset',
           options: [
             { label: 'Background', value: 'bg-background text-foreground' },
             { label: 'Card', value: 'bg-card text-card-foreground' },
@@ -76,7 +74,6 @@ export const ExamHeroBlock: Block = {
           name: 'customLight',
           type: 'text',
           label: 'Color — Light Mode',
-          dbName: 'customL',
           admin: {
             condition: (_, siblingData) => siblingData?.type === 'custom',
             placeholder: '#f5f0e8',
@@ -87,7 +84,6 @@ export const ExamHeroBlock: Block = {
           name: 'customDark',
           type: 'text',
           label: 'Color — Dark Mode',
-          dbName: 'customD',
           admin: {
             condition: (_, siblingData) => siblingData?.type === 'custom',
             placeholder: '#2a2520',
@@ -99,7 +95,6 @@ export const ExamHeroBlock: Block = {
           type: 'upload',
           relationTo: 'media',
           label: 'Image',
-          dbName: 'img',
           admin: {
             condition: (_, siblingData) => siblingData?.type === 'image',
             description: 'Displayed as a full-bleed background behind the block content.',

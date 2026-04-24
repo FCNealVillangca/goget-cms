@@ -129,7 +129,7 @@ export const HomeBlock03Block: React.FC<HomeBlock03BlockProps> = ({
               </h2>
               <div className="space-y-6 text-slate-500 text-xl leading-relaxed max-w-xl font-medium">
                 {displayParagraphs.map((paragraph, index) => (
-                  <p key={index}>{paragraph.text || paragraph}</p>
+                  <p key={index}>{typeof paragraph === 'string' ? paragraph : paragraph.text}</p>
                 ))}
               </div>
             </div>
