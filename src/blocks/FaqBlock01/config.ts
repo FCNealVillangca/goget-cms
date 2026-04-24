@@ -90,23 +90,13 @@ export const FaqBlock01: Block = {
       label: 'Description',
     },
     {
-      name: 'faqs',
-      type: 'array',
-      label: 'FAQs',
-      fields: [
-        {
-          name: 'question',
-          type: 'text',
-          required: true,
-          label: 'Question',
-        },
-        {
-          name: 'answer',
-          type: 'textarea',
-          required: true,
-          label: 'Answer',
-        },
-      ],
+      name: 'limit',
+      type: 'number',
+      label: 'Limit',
+      defaultValue: 10,
+      admin: {
+        description: 'Maximum number of FAQs to display.',
+      },
     },
     {
       name: 'showContact',

@@ -1,14 +1,10 @@
 import React from 'react'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion'
-import type { FaqBlock01 as FaqBlock01Props } from '@/payload-types'
+import type { FaqBlock01 as FaqBlock01Props, Faq } from '@/payload-types'
 import { Media } from '@/components/Media'
 import { getBackgroundClass, getCustomBackgroundCSS } from '@/utilities/getBackground'
 import { cn } from '@/utilities/ui'
+import configPromise from '@payload-config'
+import { getPayload } from 'payload'
 
 const defaultFaqs = [
   {
@@ -33,14 +29,26 @@ const defaultFaqs = [
   },
 ]
 
-export const FaqBlock01: React.FC<FaqBlock01Props> = ({
-  id,
-  background,
-  title,
-  description,
-  faqs,
-  showContact,
-}) => {
+export const FaqBlock01: React.FC<
+  FaqBlock01Props & {
+    id?: string
+  }
+> = async ({ id, background, title, description, limit = 10, showContact }) => {
+  const payload = await getPayload({ config: configPromise })
+
+  const fetchedFaqs = await payload.find({
+    collection: 'faqs',
+    depth: 1,
+    limit: limit || 10,
+    where: {
+      _status: {
+        equals: 'published',
+      },
+    },
+  })
+
+  const faqs = fetchedFaqs.docs.length > 0 ? fetchedFaqs.docs : defaultFaqs
+
   const isImage = background?.type === 'image' && background.image
   const presetClass = getBackgroundClass(background)
   const customCSS = getCustomBackgroundCSS(background, id)
@@ -49,7 +57,7 @@ export const FaqBlock01: React.FC<FaqBlock01Props> = ({
   const displayTitle = title || 'Frequently Asked Questions'
   const displayDescription =
     description || 'Everything you need to know about GOGET and our methodology.'
-  const displayFaqs = faqs && faqs.length > 0 ? faqs : defaultFaqs
+  const displayFaqs = faqs
   const displayShowContact = showContact !== false
 
   return (
@@ -69,30 +77,7 @@ export const FaqBlock01: React.FC<FaqBlock01Props> = ({
           <p className="text-slate-500 text-sm">{displayDescription}</p>
         </div>
 
-        <Accordion type="single" collapsible className="w-full">
-          {displayFaqs.map((faq, idx) => (
-            <AccordionItem key={idx} value={`item-${idx}`}>
-              <AccordionTrigger className="text-left font-medium hover:no-underline py-4">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-slate-600 leading-relaxed pb-4">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-
-        {displayShowContact && (
-          <div className="mt-12 pt-8 border-t border-slate-100 flex items-center justify-between">
-            <div className="text-sm">
-              <p className="font-semibold">Still have questions?</p>
-              <p className="text-slate-500">We're here to help.</p>
-            </div>
-            <button className="bg-slate-900 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-slate-800 transition-colors">
-              Contact Support
-            </button>
-          </div>
-        )}
+        <FaqList faqs={displayFaqs} showContact={displayShowContact} />
       </div>
     </section>
   )

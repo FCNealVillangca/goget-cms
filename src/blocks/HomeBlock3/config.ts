@@ -2,9 +2,9 @@ import type { Block } from 'payload'
 
 import { backgroundField } from '../../fields/background'
 
-export const ResultsBlock: Block = {
-  slug: 'resultsBlock',
-  interfaceName: 'ResultsBlock',
+export const HomeBlock3: Block = {
+  slug: 'homeBlock3',
+  interfaceName: 'HomeBlock3',
   fields: [
     backgroundField,
     {
@@ -18,7 +18,7 @@ export const ResultsBlock: Block = {
     },
   ],
   labels: {
-    plural: 'Results Blocks',
-    singular: 'Results Block',
+    plural: 'Home Block 3',
+    singular: 'Home Block 3',
   },
 }

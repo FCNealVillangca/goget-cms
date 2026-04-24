@@ -23,6 +23,7 @@ import { ExamHeroBlock } from '@/blocks/examHeroBlock/Component'
 import { ResultsBlock } from '@/blocks/ResultsBlock/Component'
 import { HomeHeroBlock } from '@/blocks/HomeHeroBlock/Component'
 import { FaqBlock01 } from '@/blocks/FaqBlock01/Component'
+import { HomeBlock3 } from '@/blocks/HomeBlock3/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -46,6 +47,7 @@ const blockComponents = {
   resultsBlock: ResultsBlock,
   homeHeroBlock: HomeHeroBlock,
   faqBlock01: FaqBlock01,
+  homeBlock3: HomeBlock3,
 }
 
 export const RenderBlocks: React.FC<{
